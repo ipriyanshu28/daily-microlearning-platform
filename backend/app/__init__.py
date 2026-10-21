@@ -1,0 +1,1 @@
+"""DailySkill Backend Application Package."""
