@@ -46,9 +46,9 @@ export const DiscoverPage: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
           Discover Lessons & Concepts
-        </h2>
+        </h1>
         <p className="mt-1 text-xs sm:text-sm text-slate-500">
           Browse focused 5–15 minute daily micro-lessons across computer science and engineering disciplines.
         </p>
@@ -58,9 +58,14 @@ export const DiscoverPage: React.FC = () => {
       <div className="rounded-2xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-xs space-y-4">
         {/* Search Input */}
         <div className="relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={17} />
+          <label htmlFor="lesson-search-input" className="sr-only">
+            Search lessons by topic or keyword
+          </label>
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={17} aria-hidden="true" />
           <input
-            type="text"
+            id="lesson-search-input"
+            type="search"
+            aria-label="Search lessons by topic, keyword, or concept"
             placeholder="Search by topic, keyword, or concept (e.g. Big O, memory, SQL)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

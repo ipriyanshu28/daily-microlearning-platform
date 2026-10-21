@@ -32,9 +32,9 @@ export const DashboardPage: React.FC = () => {
             <Sparkles size={14} />
             <span>Today's Learning Space</span>
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             Deliberate Practice, <span className="text-indigo-600">Daily.</span>
-          </h2>
+          </h1>
           <p className="mt-1.5 max-w-xl text-xs sm:text-sm text-slate-500 leading-relaxed">
             Spend 5–15 minutes on a focused concept today. Small, consistent efforts compound into deep mastery.
           </p>

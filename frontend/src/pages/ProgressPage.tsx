@@ -30,9 +30,9 @@ export const ProgressPage: React.FC = () => {
           <Trophy size={14} />
           <span>Progress & Analytics Dashboard</span>
         </div>
-        <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
           Your Learning Momentum
-        </h2>
+        </h1>
         <p className="mt-1 text-xs sm:text-sm text-slate-500">
           Visualize your habit consistency, domain mastery, and milestone achievements.
         </p>

@@ -19,7 +19,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ pageTitle, onOpenMenu }) =
           <Menu size={20} />
         </button>
         <div>
-          <h1 className="text-base font-bold text-slate-900">{pageTitle}</h1>
+          <p className="text-base font-bold text-slate-900">{pageTitle}</p>
           <p className="hidden text-xs text-slate-400 sm:block">
             Personalized Daily Microlearning
           </p>

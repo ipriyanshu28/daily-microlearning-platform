@@ -17,9 +17,9 @@ export const MyLearningPage: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
           My Learning Workspace
-        </h2>
+        </h1>
         <p className="mt-1 text-xs sm:text-sm text-slate-500">
           Track your active learning pathways, bookmarked lessons, and verified milestones.
         </p>

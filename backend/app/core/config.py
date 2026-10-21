@@ -19,6 +19,14 @@ class Settings(BaseSettings):
     def cors_origins(self) -> List[str]:
         return [origin.strip() for origin in self.ALLOWED_CORS_ORIGINS.split(",") if origin.strip()]
 
+    def validate_production_security(self) -> None:
+        """Enforces mandatory security settings when running in production."""
+        if self.ENVIRONMENT.lower() == "production":
+            if self.SECRET_KEY == "insecure-dev-secret-key-change-in-production" or len(self.SECRET_KEY) < 32:
+                raise ValueError("In production, SECRET_KEY must be set to a cryptographically secure value at least 32 characters long.")
+            if self.DEBUG:
+                raise ValueError("DEBUG mode must be disabled in production.")
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
