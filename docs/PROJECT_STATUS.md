@@ -49,20 +49,20 @@
 ## 🧪 Tests & Quality Checks Last Run
 
 - Frontend ESLint (`npm run lint`): **PASSED** (0 errors, 0 warnings)
-- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 885ms)
-- Backend Test Suite: To be run upon backend package initialization.
+- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 266ms)
+- Backend Test Suite (`pytest`): **PASSED** (3 passed in 0.31s)
 
 ---
 
 ## ⚠️ Known Limitations & Current State
 
 - `frontend/src/App.tsx` contains monolithic UI demo code from initial prototype; will be refactored into modular components (`components/ui`, `components/layout`, `features/lessons`, etc.) during Phase 1.
-- Backend is at minimal foundation stage; no database connections or authentication exist yet (per Phase 0 specification).
+- Backend is at minimal foundation stage; database models, migrations (Alembic), and authentication will be introduced in Phases 2 and 3.
 
 ---
 
-## ⏭️ Next 1–3 Implementation Steps
+## ⏭️ Next 1–3 Implementation Steps (Phase 1 — Responsive Frontend Foundation)
 
-1. Create `backend/pyproject.toml` with FastAPI, Pydantic, Uvicorn, and Pytest.
-2. Create `backend/app/core/config.py` and `backend/app/main.py` with `/api/v1/health` endpoint.
-3. Add backend health check unit test (`backend/tests/test_health.py`) and verify `pytest` and `npm run build`.
+1. **Design System & Atomic Tokens**: Extract reusable UI primitives in `frontend/src/components/ui/` (`Button`, `Card`, `Badge`, `ProgressBar`).
+2. **Shared Layout & Navigation**: Extract `frontend/src/components/layout/AppLayout.tsx` featuring responsive sidebar, mobile drawer, and keyboard-accessible navigation.
+3. **Route Modularization**: Separate pages into `frontend/src/pages/` (`DashboardPage`, `DiscoverPage`, `MyLearningPage`, `ProgressPage`, `NotFoundPage`) with realistic demo data clearly marked.
