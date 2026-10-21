@@ -7,8 +7,8 @@
 
 ## 📍 Current Phase & Milestone
 
-- **Current Phase:** Phase 1 — Responsive Frontend Foundation
-- **Current Milestone:** Milestone 1.1 — Design System Primitives, Responsive Layout, and Dedicated Pages
+- **Current Phase:** Phase 2 — Authentication & Onboarding
+- **Current Milestone:** Milestone 2.1 — Authentication Backend Architecture, Password Hashing, and Session Cookies
 - **Completed Milestones:**
   - Audit of existing frontend codebase and Git history (`e15f9c5`).
   - Establishment of root `.gitignore` and security boundaries.
@@ -18,6 +18,8 @@
   - Reusable UI design primitives in `frontend/src/components/ui/` (`Button`, `Card`, `Badge`, `ProgressBar`, `EmptyState`).
   - Accessible layout shell with responsive `Sidebar`, `AppHeader`, and `AppLayout` (with mobile drawer and Escape key support).
   - Decomposed `App.tsx` into dedicated pages: `DashboardPage`, `DiscoverPage` (with search and domain filters), `MyLearningPage`, `ProgressPage`, and `NotFoundPage`.
+  - Secure HTTP security headers middleware (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`) and startup validation.
+  - **Milestone 2.1 Auth Backend**: Password hashing via bcrypt, cryptographically signed JWT sessions, HttpOnly cookies (`samesite="lax"`, `path="/"`, `httponly=True`), user onboarding preferences model, and API endpoints (`/auth/register`, `/auth/login`, `/auth/me`, `/auth/logout`, `/auth/preferences`). Fully tested with 14 unit and security tests.
 
 ---
 
@@ -57,21 +59,21 @@
 ## 🧪 Tests & Quality Checks Last Run
 
 - Frontend ESLint (`npm run lint`): **PASSED** (0 errors, 0 warnings)
-- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 284ms)
-- Backend Test Suite (`pytest`): **PASSED** (5 passed in 0.32s; covers health, CORS, security headers, and production config validation)
+- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 287ms)
+- Backend Test Suite (`pytest`): **PASSED** (14 passed in 2.39s; covers health, CORS, security headers, bcrypt hashing, registration, duplicate protection, login, session cookies, and onboarding preferences)
 - Accessibility & SEO Audit: **PASSED** (single `<h1>` hierarchy per route, accessible search input labels, valid page titles and meta descriptions)
-- Security Audit: Documented in [`docs/security.md`](security.md) (HTTP security headers, strict CORS, startup environment validation)
+- Security Audit: Documented in [`docs/security.md`](security.md)
 
 ---
 
 ## ⚠️ Known Limitations & Current State
 
-- Lesson completion toggle and topic bookmarks are purely client-side local UI state; authoritative PostgreSQL persistence and user session state will be integrated in Phases 2 and 3.
+- User data currently resides in the thread-safe `InMemoryUserRepository` for Phase 2 validation; persistent PostgreSQL migrations (SQLAlchemy 2.x and Alembic) will replace it in Phase 3.
 
 ---
 
-## ⏭️ Next 1–3 Implementation Steps (Phase 2 — Authentication & Onboarding)
+## ⏭️ Next 1–3 Implementation Steps (Milestone 2.2 — Frontend Authentication & Onboarding UI)
 
-1. **Auth Backend Design**: Define user model, password hashing (Argon2 / bcrypt), secure HTTP-only cookie session handling, and authentication endpoints (`/auth/register`, `/auth/login`, `/auth/me`, `/auth/logout`).
-2. **Onboarding Questionnaire**: Build user onboarding flow (interests selection: DSA, Java, Web, Security; skill level; daily time goal: 5, 10, 15 mins).
-3. **Frontend Auth & Session Context**: Create React AuthContext / Zustand store with protected route boundaries.
+1. **Frontend Auth Context**: Create `AuthContext` and custom hook `useAuth()` communicating with `/api/v1/auth/me`, `/login`, `/register`, and `/logout` using credentials cookies.
+2. **Onboarding Questionnaire Flow**: Implement interactive onboarding wizard allowing new users to select primary domains, skill level, and daily study goal (5, 10, 15 mins).
+3. **Protected Route Wrapper**: Implement route guards redirecting unauthenticated users cleanly to login while saving redirect intent.
