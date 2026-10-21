@@ -57,8 +57,10 @@
 ## 🧪 Tests & Quality Checks Last Run
 
 - Frontend ESLint (`npm run lint`): **PASSED** (0 errors, 0 warnings)
-- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 262ms)
-- Backend Test Suite (`pytest`): **PASSED** (3 passed in 0.36s)
+- Frontend TypeScript & Vite Build (`npm run build`): **PASSED** (built in 284ms)
+- Backend Test Suite (`pytest`): **PASSED** (5 passed in 0.32s; covers health, CORS, security headers, and production config validation)
+- Accessibility & SEO Audit: **PASSED** (single `<h1>` hierarchy per route, accessible search input labels, valid page titles and meta descriptions)
+- Security Audit: Documented in [`docs/security.md`](security.md) (HTTP security headers, strict CORS, startup environment validation)
 
 ---
 

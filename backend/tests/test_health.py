@@ -37,3 +37,34 @@ def test_health_check_cors_headers():
     assert response.status_code == 200
     assert response.headers.get("access-control-allow-origin") == origin
     assert response.headers.get("access-control-allow-credentials") == "true"
+
+
+def test_security_headers_present():
+    """Verify that secure HTTP headers are applied to all responses."""
+    response = client.get(f"{settings.API_V1_PREFIX}/health")
+    assert response.status_code == 200
+    assert response.headers.get("x-content-type-options") == "nosniff"
+    assert response.headers.get("x-frame-options") == "DENY"
+    assert response.headers.get("referrer-policy") == "strict-origin-when-cross-origin"
+
+
+def test_production_security_validation():
+    """Verify that production validation rejects default keys and debug mode."""
+    import pytest
+    from app.core.config import Settings
+
+    prod_insecure = Settings(
+        ENVIRONMENT="production",
+        DEBUG=True,
+        SECRET_KEY="insecure-dev-secret-key-change-in-production"
+    )
+    with pytest.raises(ValueError, match="SECRET_KEY must be set"):
+        prod_insecure.validate_production_security()
+
+    prod_debug = Settings(
+        ENVIRONMENT="production",
+        DEBUG=True,
+        SECRET_KEY="a-very-long-secure-cryptographic-key-value"
+    )
+    with pytest.raises(ValueError, match="DEBUG mode must be disabled"):
+        prod_debug.validate_production_security()
