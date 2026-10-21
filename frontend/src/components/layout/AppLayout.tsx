@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Sidebar, navigationItems } from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 import { AppHeader } from "./AppHeader";
+import { navigationItems } from "./navConfig";
 
 export const AppLayout: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);

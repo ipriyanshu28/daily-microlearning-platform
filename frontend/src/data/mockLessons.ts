@@ -1,4 +1,4 @@
-import { Lesson, LearningPath } from "../types/lesson";
+import type { Lesson, LearningPath } from "../types/lesson";
 
 /**
  * DEMO ONLY: Static placeholder data for Phase 1 interface development.
